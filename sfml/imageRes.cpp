@@ -3,7 +3,43 @@
 
 #include <SFML/Graphics.hpp>
 
+#include "RenderWindow.h"
+#include "Draw.h"
+
 using namespace std;
+
+void onClickUpdate() {
+	extern sf::RenderWindow win;
+	extern int offX, offY;
+	
+	static bool clicked = 0;
+	static int initX = 0, initY = 0;
+
+	if (clicked == 0) {
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+			clicked = 1;
+			initX = sf::Mouse::getPosition(win).x;
+			initY = sf::Mouse::getPosition(win).y;
+		}
+		else {
+			return;
+		}
+	}
+
+	if (!sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+		clicked = 0;
+		return;
+	}
+
+	int curentX = sf::Mouse::getPosition(win).x;
+	int curentY = sf::Mouse::getPosition(win).y;
+
+	offX += (curentX - initX);
+	offY += (curentY - initY);
+
+	initX = curentX;
+	initY = curentY;
+}
 
 int main() {
 
@@ -12,7 +48,7 @@ int main() {
 	rct.setSize({ 100, 200 });
 	rct.setPosition({ 0, 50 });
 
-	sf::RenderWindow win(sf::VideoMode(800, 600), "Win");
+	extern sf::RenderWindow win;
 	
 	while (win.isOpen()) {
 		sf::Event ev;
@@ -29,9 +65,11 @@ int main() {
 			}
 		}
 
+		onClickUpdate();
+
 		win.clear(sf::Color::Black);
 
-		win.draw(rct);
+		draw(rct);
 
 		win.display();
 	}

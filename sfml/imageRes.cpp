@@ -8,39 +8,6 @@
 
 using namespace std;
 
-void onClickUpdate() {
-	extern sf::RenderWindow win;
-	extern int offX, offY;
-	
-	static bool clicked = 0;
-	static int initX = 0, initY = 0;
-
-	if (clicked == 0) {
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-			clicked = 1;
-			initX = sf::Mouse::getPosition(win).x;
-			initY = sf::Mouse::getPosition(win).y;
-		}
-		else {
-			return;
-		}
-	}
-
-	if (!sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-		clicked = 0;
-		return;
-	}
-
-	int curentX = sf::Mouse::getPosition(win).x;
-	int curentY = sf::Mouse::getPosition(win).y;
-
-	offX += (curentX - initX);
-	offY += (curentY - initY);
-
-	initX = curentX;
-	initY = curentY;
-}
-
 int main() {
 
 	sf::RectangleShape rct;
@@ -49,7 +16,7 @@ int main() {
 	rct.setPosition({ 0, 50 });
 
 	extern sf::RenderWindow win;
-	
+
 	while (win.isOpen()) {
 		sf::Event ev;
 		while (win.pollEvent(ev)) {
@@ -61,14 +28,18 @@ int main() {
 				//cout << "Delt: " << ev.mouseWheelScroll.delta << '\n';
 				
 				// zoom it lol
+				if (ev.mouseWheelScroll.delta > 0)
+					view1.zoom(0.8), zoom /= 0.8;
+				else
+					view1.zoom(1.25), zoom /= 1.25;
 				
 			}
 		}
 
-		onClickUpdate();
+		
 
 		win.clear(sf::Color::Black);
-
+		
 		draw(rct);
 
 		win.display();

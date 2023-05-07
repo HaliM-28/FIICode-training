@@ -2,4 +2,6 @@
 
 #include <SFML/Graphics.hpp>
 
-sf::RenderWindow win(sf::VideoMode(800, 600), "Win");
+extern float zoom;
+extern sf::RenderWindow win;
+extern sf::View view1;

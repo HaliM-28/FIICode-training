@@ -1,18 +1,6 @@
 #pragma once
 
-#include "RenderWindow.h"
+#include <SFML/Graphics.hpp>
 
-int offX = 0, offY = 0;
-extern sf::RenderWindow win;
-
-void draw(sf::RectangleShape &rct) {
-	
-	// OFFING X, Y
-	rct.setPosition(rct.getPosition().x + offX, rct.getPosition().y + offY);
-	
-	win.draw(rct);
-
-	
-	// DEOFFING X, Y
-	rct.setPosition(rct.getPosition().x - offX, rct.getPosition().y - offY);
-}
+void onClickUpdate();
+void draw(sf::RectangleShape& rct);

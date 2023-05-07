@@ -35,7 +35,6 @@ int main() {
 				
 			}
 		}
-
 		
 
 		win.clear(sf::Color::Black);

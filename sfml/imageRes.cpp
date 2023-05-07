@@ -8,14 +8,68 @@
 
 using namespace std;
 
+class element {
+public:
+	virtual void Draw() {
+
+	}
+};
+class folder : public element {
+public:
+	sf::RectangleShape rct;
+	folder() {
+		rct.setFillColor(sf::Color::Yellow);
+		rct.setSize({ 100, 200 });
+		rct.setPosition({ 0, 50 });
+	}
+	void Draw() {
+		draw(rct);
+	}
+};
+class copac {
+private:
+	vector<element*> v;
+public:
+	copac() {
+		element* el;
+		folder* fd = new folder();
+		el = fd;
+		v.push_back(el);
+	}
+	void Draw() {
+		for (auto i : v) i->Draw();
+	}
+};
+
+class base {
+public:
+	int x = 10;
+	virtual void printX() {
+		cout << x << "\n";
+	}
+};
+class der : public base {
+public:
+	int y = 30;
+	void printX() {
+		cout << y << "\n";
+	}
+};
+
 int main() {
+	/*
+	base* b;
+	der d;
+	b = &d;
+	b->printX();
+	*/
+	copac cp;
+
 
 	sf::RectangleShape rct;
 	rct.setFillColor(sf::Color::Yellow);
 	rct.setSize({ 100, 200 });
 	rct.setPosition({ 0, 50 });
-
-	extern sf::RenderWindow win;
 
 	while (win.isOpen()) {
 		sf::Event ev;
@@ -39,7 +93,8 @@ int main() {
 
 		win.clear(sf::Color::Black);
 		
-		draw(rct);
+		//draw(rct);
+		cp.Draw();
 
 		win.display();
 	}

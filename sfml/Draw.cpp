@@ -6,8 +6,6 @@
 float offX = 0, offY = 0;
 
 void onClickUpdate() {
-	extern sf::RenderWindow win;
-	extern float zoom;
 	offX = 0;
 	offY = 0;
 
@@ -41,8 +39,6 @@ void onClickUpdate() {
 }
 
 void draw(sf::RectangleShape& rct) {
-	extern sf::RenderWindow win;
-
 	onClickUpdate();
 
 	view1.move({ (float)offX, (float)offY });

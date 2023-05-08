@@ -41,28 +41,7 @@ public:
 	}
 };
 
-class base {
-public:
-	int x = 10;
-	virtual void printX() {
-		cout << x << "\n";
-	}
-};
-class der : public base {
-public:
-	int y = 30;
-	void printX() {
-		cout << y << "\n";
-	}
-};
-
 int main() {
-	/*
-	base* b;
-	der d;
-	b = &d;
-	b->printX();
-	*/
 	copac cp;
 
 

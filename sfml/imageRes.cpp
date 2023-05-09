@@ -11,33 +11,47 @@ using namespace std;
 class element {
 public:
 	virtual void Draw() {
-
+		cout << "Nu cred ca ar trebui sa se ajunga aici\n";
+	}
+};
+class Text : public element {
+public:
+	void Draw() {
+		cout << "Text\n";
 	}
 };
 class folder : public element {
 public:
 	sf::RectangleShape rct;
+	sf::Texture *txt;
+	vector<element*> inauntru;
+
 	folder() {
-		rct.setFillColor(sf::Color::Yellow);
-		rct.setSize({ 100, 200 });
+		txt = new sf::Texture();
+		txt->loadFromFile("samples/folder.png");
+		rct.setSize({ (float)txt->getSize().x, (float)txt->getSize().y});
 		rct.setPosition({ 0, 50 });
+		rct.setTexture(txt);
+
+		inauntru.push_back(new Text);
 	}
-	void Draw() {
+	void Draw(float x, float y) {
+		rct.setPosition({ x, y });
 		draw(rct);
+		for (auto i : inauntru) {
+			i->Draw();
+		}
 	}
 };
 class copac {
 private:
-	vector<element*> v;
+	folder* v;
 public:
 	copac() {
-		element* el;
-		folder* fd = new folder();
-		el = fd;
-		v.push_back(el);
+		v = new folder();
 	}
 	void Draw() {
-		for (auto i : v) i->Draw();
+		v->Draw(0, 0);
 	}
 };
 

@@ -20,6 +20,12 @@ public:
 		cout << "Text\n";
 	}
 };
+class Imagine : public element {
+public:
+	void Draw() {
+		cout << "Imagine\n";
+	}
+};
 class folder : public element {
 public:
 	sf::RectangleShape rct;

@@ -16,12 +16,20 @@ public:
 };
 class Text : public element {
 public:
+	sf::Text txt;
+	Text(std::string str) {
+		txt.setString(str);
+	}
+	Text() {
+		txt.setString("Text");
+	}
 	void Draw() {
 		cout << "Text\n";
 	}
 };
 class Imagine : public element {
 public:
+	sf::Image im;
 	void Draw() {
 		cout << "Imagine\n";
 	}
@@ -29,15 +37,15 @@ public:
 class folder : public element {
 public:
 	sf::RectangleShape rct;
-	sf::Texture *txt;
+	sf::Texture txt;
 	vector<element*> inauntru;
 
 	folder() {
-		txt = new sf::Texture();
-		txt->loadFromFile("samples/folder.png");
-		rct.setSize({ (float)txt->getSize().x, (float)txt->getSize().y});
+		txt = *(new sf::Texture());
+		txt.loadFromFile("samples/folder.png");
+		rct.setSize({ (float)txt.getSize().x, (float)txt.getSize().y});
 		rct.setPosition({ 0, 50 });
-		rct.setTexture(txt);
+		rct.setTexture(&txt);
 
 		inauntru.push_back(new Text);
 	}
@@ -63,7 +71,6 @@ public:
 
 int main() {
 	copac cp;
-
 
 	sf::RectangleShape rct;
 	rct.setFillColor(sf::Color::Yellow);

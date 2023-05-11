@@ -1,5 +1,7 @@
 #include <iostream>
 #include <vector>
+#include <string>
+#include <filesystem>
 
 #include <SFML/Graphics.hpp>
 
@@ -70,8 +72,13 @@ public:
 };
 
 int main() {
-	copac cp;
+	string path = "samples";
+	for (const auto& entry : filesystem::directory_iterator(path)) {
+		cout << entry.is_directory() << ' ' << entry.path() << '\n';
+	}
 
+	copac cp;
+	
 	sf::RectangleShape rct;
 	rct.setFillColor(sf::Color::Yellow);
 	rct.setSize({ 100, 200 });

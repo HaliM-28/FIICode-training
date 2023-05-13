@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 
 float offX = 0, offY = 0;
+float globalOffX = 0, globalOffY = 0;
 
 void onClickUpdate() {
 	offX = 0;
@@ -30,6 +31,9 @@ void onClickUpdate() {
 
 	float curentX = sf::Mouse::getPosition(win).x;
 	float curentY = sf::Mouse::getPosition(win).y;
+
+	globalOffX += (curentX - initX);
+	globalOffY += (curentY - initY);
 
 	offX -= ((curentX - initX) * (float)(1 / zoom));
 	offY -= ((curentY - initY) * (float)(1 / zoom));

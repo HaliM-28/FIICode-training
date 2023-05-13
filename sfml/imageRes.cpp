@@ -7,82 +7,58 @@
 
 #include "RenderWindow.h"
 #include "Draw.h"
+#include "core.h"
 
 using namespace std;
 
-class element {
+class buton {
 public:
-	virtual void Draw() {
-		cout << "Nu cred ca ar trebui sa se ajunga aici\n";
+	sf::RectangleShape btn;
+	buton() {
+		btn.setSize({ 50.0f, 50.0f });
+		btn.setPosition(200, 0);
+		btn.setFillColor(sf::Color::Red);
 	}
-};
-class Text : public element {
-public:
-	sf::Text txt;
-	Text(std::string str) {
-		txt.setString(str);
-	}
-	Text() {
-		txt.setString("Text");
-	}
-	void Draw() {
-		cout << "Text\n";
-	}
-};
-class Imagine : public element {
-public:
-	sf::Image im;
-	void Draw() {
-		cout << "Imagine\n";
-	}
-};
-class folder : public element {
-public:
-	sf::RectangleShape rct;
-	sf::Texture txt;
-	vector<element*> inauntru;
+	virtual void press() {
+		// fa firsclick global in header seprat sa nu fut degeaba procesoru de fiecare data
+		static bool firstClick = 1;
 
-	folder() {
-		txt = *(new sf::Texture());
-		txt.loadFromFile("samples/folder.png");
-		rct.setSize({ (float)txt.getSize().x, (float)txt.getSize().y});
-		rct.setPosition({ 0, 50 });
-		rct.setTexture(&txt);
+		float btnX = btn.getPosition().x;
+		float btnY = btn.getPosition().y;
+		//sf::Vector2i real = win.mapCoordsToPixel({ btnX, btnY }, view1);
+		//sf::Vector2i real2 = win.mapCoordsToPixel({ btnX + btn.getSize().x, btnY + btn.getSize().y}, view1);
+		sf::Vector2i real = { 0, 0 };
+		sf::Vector2f real2 = btn.getSize();
 
-		inauntru.push_back(new Text);
-	}
-	void Draw(float x, float y) {
-		rct.setPosition({ x, y });
-		draw(rct);
-		for (auto i : inauntru) {
-			i->Draw();
+		if (sf::Mouse::getPosition(win).x >= real.x && sf::Mouse::getPosition(win).x < real2.x &&
+			sf::Mouse::getPosition(win).y >= real.y && sf::Mouse::getPosition(win).y < real2.y) {
+
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && firstClick == 1) {
+				firstClick = 0;
+				// aici deabia...
+				folderSelectat->createNew();
+			}
 		}
+		if (!sf::Mouse::isButtonPressed(sf::Mouse::Left))
+			firstClick = 1;
 	}
-};
-class copac {
-private:
-	folder* v;
-public:
-	copac() {
-		v = new folder();
-	}
-	void Draw() {
-		v->Draw(0, 0);
+	virtual void Draw() {
+		btn.setPosition(win.mapPixelToCoords({ 0, 0 }, view1));
+		btn.setScale({1.0f / zoom, 1.0f / zoom});
+		win.draw(btn);
 	}
 };
 
 int main() {
+	/* folositor pt open existing
+	filesystem searching everything:
 	string path = "samples";
 	for (const auto& entry : filesystem::directory_iterator(path)) {
 		cout << entry.is_directory() << ' ' << entry.path() << '\n';
 	}
-
+	*/
 	copac cp;
-	
-	sf::RectangleShape rct;
-	rct.setFillColor(sf::Color::Yellow);
-	rct.setSize({ 100, 200 });
-	rct.setPosition({ 0, 50 });
+	buton btn;
 
 	while (win.isOpen()) {
 		sf::Event ev;
@@ -102,11 +78,12 @@ int main() {
 				
 			}
 		}
-		
+
+		btn.press();
 
 		win.clear(sf::Color::Black);
-		
-		//draw(rct);
+
+		btn.Draw();
 		cp.Draw();
 
 		win.display();

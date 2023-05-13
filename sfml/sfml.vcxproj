@@ -144,11 +144,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="core.cpp" />
     <ClCompile Include="Draw.cpp" />
     <ClCompile Include="imageRes.cpp" />
     <ClCompile Include="RenderWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="core.h" />
     <ClInclude Include="Draw.h" />
     <ClInclude Include="RenderWindow.h" />
   </ItemGroup>

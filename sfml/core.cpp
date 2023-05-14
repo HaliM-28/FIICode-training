@@ -1,6 +1,6 @@
 #include "core.h"
 
-void element::Draw() {
+void element::Draw(float x, float& y) {
 	cout << "Nu cred ca ar trebui sa se ajunga aici\n";
 }
 
@@ -10,11 +10,11 @@ Text::Text(std::string str) {
 Text::Text() {
 	txt.setString("Text");
 }
-void Text::Draw() {
+void Text::Draw(float x, float& y) {
 	cout << "Text\n";
 }
 
-void Imagine::Draw() {
+void Imagine::Draw(float x, float& y) {
 	cout << "Imagine\n";
 }
 
@@ -25,10 +25,18 @@ folder::folder() {
 	rct.setPosition({ 0, 50 });
 	rct.setTexture(&txt);
 
+	sizeX = rct.getSize().x;
+	sizeY = rct.getSize().y;
+
+	lastX = 0;
+	lastY = 50;
+
 	//inauntru.push_back(new Text);
 }
-void folder::Draw(float x, float y) {
+void folder::Draw(float x, float &y) {
 	rct.setPosition({ x, y });
+	lastX = x;
+	lastY = y;
 
 	if (folderSelectat == this) {
 		rct.setFillColor(sf::Color::Red);
@@ -40,20 +48,39 @@ void folder::Draw(float x, float y) {
 		rct.setFillColor(sf::Color::White);
 	}
 
-	for (auto i : inauntru) {
-		i->Draw();
+	cout << inauntru.size() << '\n';
+
+	for (vector<element*>::iterator i = inauntru.begin(); i != inauntru.end(); i++) {
+		(*i)->Draw(x + rct.getSize().x, y);
+		if (i != prev(inauntru.end()) )
+			y += rct.getSize().y;
 	}
 }
 void folder::createNew() {
-	cout << "Hello\n";
+	inauntru.push_back(new folder);
+	//cout << "Hello\n";
 }
 
 copac::copac() {
 	v = new folder();
 	folderSelectat = v;
 }
-void copac::Draw() {
-	v->Draw(0, 0);
+void copac::Draw(float x, float y) {
+	v->Draw(x, y);
 }
 
 folder* folderSelectat;
+
+void copac::FindUtil(sf::Vector2f& unde, folder* curent) {
+	if (curent->lastX < unde.x && curent->lastX + curent->sizeX > unde.x &&
+		curent->lastY < unde.y && curent->lastY + curent->sizeY > unde.y) {
+		folderSelectat = curent;
+	}
+	else {
+		for (auto i : curent->inauntru) {
+			if (dynamic_cast<folder*>(i) != nullptr) {
+				FindUtil(unde, dynamic_cast<folder*>(i));
+			}
+		}
+	}
+}

@@ -25,8 +25,6 @@ public:
 
 		float btnX = btn.getPosition().x;
 		float btnY = btn.getPosition().y;
-		//sf::Vector2i real = win.mapCoordsToPixel({ btnX, btnY }, view1);
-		//sf::Vector2i real2 = win.mapCoordsToPixel({ btnX + btn.getSize().x, btnY + btn.getSize().y}, view1);
 		sf::Vector2i real = { 0, 0 };
 		sf::Vector2f real2 = btn.getSize();
 
@@ -49,7 +47,21 @@ public:
 	}
 };
 
+class a {
+public:
+	virtual void f(float x, float& y) {
+		cout << "A\n";
+	};
+};
+class b : public a {
+public:
+	void f(float x, float &y) {
+		cout << "B\n";
+	};
+};
+
 int main() {
+
 	/* folositor pt open existing
 	filesystem searching everything:
 	string path = "samples";
@@ -76,6 +88,13 @@ int main() {
 				else
 					view1.zoom(1.25), zoom /= 1.25;
 				
+			}
+			else if (ev.type == sf::Event::MouseButtonPressed) {
+				cout << "Here\n";
+				sf::Vector2i t = sf::Mouse::getPosition(win);
+				sf::Vector2f t2 = win.mapPixelToCoords(t, view1);
+				cout << t2.x << ' ' << t2.y << '\n';
+				cp.Find(t2);
 			}
 		}
 

@@ -8,6 +8,7 @@
 #include "RenderWindow.h"
 #include "Draw.h"
 #include "core.h"
+#include "Font.h"
 
 using namespace std;
 
@@ -61,7 +62,7 @@ public:
 };
 
 int main() {
-
+	font_init();
 	/* folositor pt open existing
 	filesystem searching everything:
 	string path = "samples";
@@ -81,19 +82,19 @@ int main() {
 			else if (ev.type == sf::Event::MouseWheelScrolled) {
 				//cout << "X, Y: " << ev.mouseWheelScroll.x << ' ' << ev.mouseWheelScroll.y << '\n';
 				//cout << "Delt: " << ev.mouseWheelScroll.delta << '\n';
-				
+
 				// zoom it lol
-				if (ev.mouseWheelScroll.delta > 0)
+				if (ev.mouseWheelScroll.delta > 0 && zoom < 3)
 					view1.zoom(0.8), zoom /= 0.8;
 				else
-					view1.zoom(1.25), zoom /= 1.25;
+					if (ev.mouseWheelScroll.delta < 0 && zoom > 0.05)
+						view1.zoom(1.25), zoom /= 1.25;
 				
 			}
 			else if (ev.type == sf::Event::MouseButtonPressed) {
-				cout << "Here\n";
 				sf::Vector2i t = sf::Mouse::getPosition(win);
 				sf::Vector2f t2 = win.mapPixelToCoords(t, view1);
-				cout << t2.x << ' ' << t2.y << '\n';
+				//cout << t2.x << ' ' << t2.y << '\n';
 				cp.Find(t2);
 			}
 		}

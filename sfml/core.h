@@ -9,11 +9,13 @@
 
 #include "RenderWindow.h"
 #include "Draw.h"
+#include "Font.h"
 
 using namespace std;
 
 class element {
 public:
+	sf::Text nume;
 	float lastX = 0, lastY = 0;
 	float sizeX = 0, sizeY = 0;
 
@@ -36,7 +38,6 @@ public:
 
 class folder : public element {
 public:
-
 	sf::RectangleShape rct;
 	sf::Texture txt;
 	vector<element*> inauntru;

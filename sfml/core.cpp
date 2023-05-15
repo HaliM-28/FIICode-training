@@ -24,6 +24,7 @@ folder::folder() {
 	rct.setSize({ (float)txt.getSize().x, (float)txt.getSize().y });
 	rct.setPosition({ 0, 50 });
 	rct.setTexture(&txt);
+	nume = createText(rct.getPosition().x + 30, rct.getPosition().y + rct.getSize().y - 75, "folder");
 
 	sizeX = rct.getSize().x;
 	sizeY = rct.getSize().y;
@@ -43,12 +44,11 @@ void folder::Draw(float x, float &y) {
 	}
 
 	draw(rct);
+	win.draw(nume);
 
 	if (folderSelectat == this) {
 		rct.setFillColor(sf::Color::White);
 	}
-
-	cout << inauntru.size() << '\n';
 
 	for (vector<element*>::iterator i = inauntru.begin(); i != inauntru.end(); i++) {
 		(*i)->Draw(x + rct.getSize().x, y);

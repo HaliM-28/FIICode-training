@@ -14,13 +14,30 @@ using namespace std;
 
 class buton {
 public:
+	sf::Texture texture;
 	sf::RectangleShape btn;
 	buton() {
-		btn.setSize({ 50.0f, 50.0f });
-		btn.setPosition(200, 0);
-		btn.setFillColor(sf::Color::Red);
+		;
 	}
 	virtual void press() {
+		;
+	}
+	virtual void Draw() {
+		;
+	};
+};
+
+class buton_folder : public buton {
+public:
+	buton_folder() {
+		texture.loadFromFile("samples/folder.png");
+		btn.setTexture(&texture);
+
+		btn.setSize({ 50.0f, 50.0f });
+		btn.setPosition(0, 0);
+		btn.setFillColor(sf::Color::Red);
+	}
+	void press() {
 		// fa firsclick global in header seprat sa nu fut degeaba procesoru de fiecare data
 		static bool firstClick = 1;
 
@@ -41,24 +58,48 @@ public:
 		if (!sf::Mouse::isButtonPressed(sf::Mouse::Left))
 			firstClick = 1;
 	}
-	virtual void Draw() {
+	void Draw() {
 		btn.setPosition(win.mapPixelToCoords({ 0, 0 }, view1));
-		btn.setScale({1.0f / zoom, 1.0f / zoom});
+		btn.setScale({ 1.0f / zoom, 1.0f / zoom });
 		win.draw(btn);
 	}
 };
 
-class a {
+class buton_text : public buton {
 public:
-	virtual void f(float x, float& y) {
-		cout << "A\n";
-	};
-};
-class b : public a {
-public:
-	void f(float x, float &y) {
-		cout << "B\n";
-	};
+	buton_text() {
+		texture.loadFromFile("samples/text.png");
+		btn.setTexture(&texture);
+
+		btn.setSize({ 50.0f, 50.0f });
+		btn.setPosition(50, 0);
+	}
+	void press() {
+		// fa firsclick global in header seprat sa nu fut degeaba procesoru de fiecare data
+		static bool firstClick = 1;
+
+		float btnX = btn.getPosition().x;
+		float btnY = btn.getPosition().y;
+		sf::Vector2i real = { 0, 0 };
+		sf::Vector2f real2 = btn.getSize();
+
+		if (sf::Mouse::getPosition(win).x >= real.x && sf::Mouse::getPosition(win).x < real2.x &&
+			sf::Mouse::getPosition(win).y >= real.y && sf::Mouse::getPosition(win).y < real2.y) {
+
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && firstClick == 1) {
+				firstClick = 0;
+				// aici deabia...
+				folderSelectat->createNew();
+			}
+		}
+		if (!sf::Mouse::isButtonPressed(sf::Mouse::Left))
+			firstClick = 1;
+	}
+	void Draw() {
+		btn.setPosition(win.mapPixelToCoords({ 50, 0 }, view1));
+		btn.setScale({ 1.0f / zoom, 1.0f / zoom });
+		win.draw(btn);
+	}
 };
 
 int main() {
@@ -71,7 +112,8 @@ int main() {
 	}
 	*/
 	copac cp;
-	buton btn;
+	buton_folder btn_fol;
+	buton_text btn_txt;
 
 	while (win.isOpen()) {
 		sf::Event ev;
@@ -99,11 +141,13 @@ int main() {
 			}
 		}
 
-		btn.press();
+		btn_fol.press();
+		btn_txt.press();
 
 		win.clear(sf::Color::Black);
 
-		btn.Draw();
+		btn_fol.Draw();
+		btn_txt.Draw();
 		cp.Draw();
 
 		win.display();

@@ -24,7 +24,7 @@ folder::folder() {
 	rct.setSize({ (float)txt.getSize().x, (float)txt.getSize().y });
 	rct.setPosition({ 0, 50 });
 	rct.setTexture(&txt);
-	nume = createText(rct.getPosition().x + 30, rct.getPosition().y + rct.getSize().y - 75, "folder");
+	nume = createText(0, 0, "fodler");
 
 	sizeX = rct.getSize().x;
 	sizeY = rct.getSize().y;
@@ -43,7 +43,9 @@ void folder::Draw(float x, float &y) {
 		rct.setFillColor(sf::Color::Red);
 	}
 
+	rct.setPosition(x, y);
 	draw(rct);
+	nume.setPosition(x + 30, y + rct.getSize().y - 30);
 	win.draw(nume);
 
 	if (folderSelectat == this) {

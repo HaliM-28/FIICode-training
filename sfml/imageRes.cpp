@@ -52,7 +52,7 @@ public:
 			if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && firstClick == 1) {
 				firstClick = 0;
 				// aici deabia...
-				folderSelectat->createNew();
+				folderSelectat->createNew(new folder);
 			}
 		}
 		if (!sf::Mouse::isButtonPressed(sf::Mouse::Left))
@@ -80,8 +80,8 @@ public:
 
 		float btnX = btn.getPosition().x;
 		float btnY = btn.getPosition().y;
-		sf::Vector2i real = { 0, 0 };
-		sf::Vector2f real2 = btn.getSize();
+		sf::Vector2i real = { 50, 0 };
+		sf::Vector2f real2 = { real.x + btn.getSize().x , real.y + btn.getSize().y };
 
 		if (sf::Mouse::getPosition(win).x >= real.x && sf::Mouse::getPosition(win).x < real2.x &&
 			sf::Mouse::getPosition(win).y >= real.y && sf::Mouse::getPosition(win).y < real2.y) {
@@ -89,7 +89,7 @@ public:
 			if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && firstClick == 1) {
 				firstClick = 0;
 				// aici deabia...
-				folderSelectat->createNew();
+				folderSelectat->createNew(new Text);
 			}
 		}
 		if (!sf::Mouse::isButtonPressed(sf::Mouse::Left))

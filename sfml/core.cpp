@@ -9,9 +9,16 @@ Text::Text(std::string str) {
 }
 Text::Text() {
 	txt.setString("Text");
+	
+	texture.loadFromFile("samples/text.png");
+
+	rct.setTexture(&texture);
+	rct.setSize({ 50.0f, 50.0f });
 }
 void Text::Draw(float x, float& y) {
-	cout << "Text\n";
+	rct.setPosition(x, y);
+	win.draw(rct);
+	//cout << "Text\n";
 }
 
 void Imagine::Draw(float x, float& y) {
@@ -58,9 +65,8 @@ void folder::Draw(float x, float &y) {
 			y += rct.getSize().y;
 	}
 }
-void folder::createNew() {
-	inauntru.push_back(new folder);
-	//cout << "Hello\n";
+void folder::createNew(element * el) {
+	inauntru.push_back(el);
 }
 
 copac::copac() {

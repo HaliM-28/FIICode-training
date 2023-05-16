@@ -24,6 +24,9 @@ public:
 
 class Text : public element {
 public:
+	sf::RectangleShape rct;
+	sf::Texture texture;
+
 	sf::Text txt;
 	Text(std::string str);
 	Text();
@@ -44,7 +47,7 @@ public:
 
 	folder();
 	void Draw(float x, float &y);
-	void createNew();
+	void createNew(element * el);
 };
 
 class copac {

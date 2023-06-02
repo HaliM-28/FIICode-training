@@ -24,7 +24,7 @@
     <ProjectGuid>{d1677068-69de-4335-a94e-1f48b3cf9b5d}</ProjectGuid>
     <RootNamespace>sfml</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>imageRes</ProjectName>
+    <ProjectName>sfml-wfc</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -147,7 +147,7 @@
     <ClCompile Include="core.cpp" />
     <ClCompile Include="Draw.cpp" />
     <ClCompile Include="Font.cpp" />
-    <ClCompile Include="imageRes.cpp" />
+    <ClCompile Include="sfml-wfc.cpp" />
     <ClCompile Include="RenderWindow.cpp" />
   </ItemGroup>
   <ItemGroup>

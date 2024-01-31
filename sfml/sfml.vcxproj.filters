@@ -13,10 +13,60 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\window">
+      <UniqueIdentifier>{b382b661-0f68-4864-9d7a-0c5565fe2514}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\text">
+      <UniqueIdentifier>{d32f934a-4189-426a-87fa-3822b63ea9e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\game">
+      <UniqueIdentifier>{be3ebb1b-2b86-41d6-a1f2-09869ac070f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\game\core">
+      <UniqueIdentifier>{8ddc6360-182d-486a-aeb6-e04ab15ef832}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\enemy">
+      <UniqueIdentifier>{9c6f1916-b802-488d-96cf-ae9ea8a639c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\player">
+      <UniqueIdentifier>{75c46820-be76-4de5-9aa4-b528a60370fd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="sfml-wfc.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="player.cpp">
+      <Filter>Header Files\player</Filter>
+    </ClCompile>
+    <ClCompile Include="window.cpp">
+      <Filter>Header Files\window</Filter>
+    </ClCompile>
+    <ClCompile Include="text.cpp">
+      <Filter>Header Files\text</Filter>
+    </ClCompile>
+    <ClCompile Include="enemy.cpp">
+      <Filter>Header Files\enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="game.cpp">
+      <Filter>Header Files\game\core</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="player.h">
+      <Filter>Header Files\player</Filter>
+    </ClInclude>
+    <ClInclude Include="window.h">
+      <Filter>Header Files\window</Filter>
+    </ClInclude>
+    <ClInclude Include="text.h">
+      <Filter>Header Files\text</Filter>
+    </ClInclude>
+    <ClInclude Include="enemy.h">
+      <Filter>Header Files\enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="game.h">
+      <Filter>Header Files\game\core</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,14 +1,18 @@
 #pragma once
+#include <string>
 #include <SFML/Graphics.hpp>
-class text
+namespace util
 {
-public:
-	text();
-	void setPosition(sf::Vector2f);
-	void setSize(sf::Vector2f);
-private:
-	sf::Text txt;
-	sf::Font font;
-
-
-};
+	class Text
+	{
+	public:
+		Text(std::string txt);
+		inline std::string getText() { return text.getString(); };
+		inline void setText(std::string txt) { text.setString(txt); };
+		void draw();
+		//void update();
+	private:
+		sf::Text text;
+		sf::Font font;
+	};
+}

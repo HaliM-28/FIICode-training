@@ -14,59 +14,110 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
     <Filter Include="Header Files\window">
-      <UniqueIdentifier>{b382b661-0f68-4864-9d7a-0c5565fe2514}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\text">
-      <UniqueIdentifier>{d32f934a-4189-426a-87fa-3822b63ea9e5}</UniqueIdentifier>
+      <UniqueIdentifier>{c92e82d5-c229-422c-8d9c-d9c512a536c5}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\game">
-      <UniqueIdentifier>{be3ebb1b-2b86-41d6-a1f2-09869ac070f6}</UniqueIdentifier>
+      <UniqueIdentifier>{ee4ca220-c212-4f68-8b40-7d0685725a0e}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\game\core">
-      <UniqueIdentifier>{8ddc6360-182d-486a-aeb6-e04ab15ef832}</UniqueIdentifier>
+      <UniqueIdentifier>{61d25f1c-314e-4d4b-96ff-cce0ed803496}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\enemy">
-      <UniqueIdentifier>{9c6f1916-b802-488d-96cf-ae9ea8a639c6}</UniqueIdentifier>
+    <Filter Include="Header Files\game\player">
+      <UniqueIdentifier>{3c7f9c36-13ac-468d-afc6-4d4017395f41}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\player">
-      <UniqueIdentifier>{75c46820-be76-4de5-9aa4-b528a60370fd}</UniqueIdentifier>
+    <Filter Include="Header Files\game\enemy">
+      <UniqueIdentifier>{75f5c69c-eaaa-45c2-9e82-576d3c68bc32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\game\util">
+      <UniqueIdentifier>{8dcdc6f0-9702-4035-bf27-79ea7434dd7c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\game\util\core">
+      <UniqueIdentifier>{9cc5b936-a783-4f2b-9793-f687a0381d88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\game\util\health_bar">
+      <UniqueIdentifier>{8f33a444-d9a4-42ab-963e-f03014d3e7e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\game\util\timer">
+      <UniqueIdentifier>{809521ce-cb16-4e34-8ed3-f652282402ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\game\util\text">
+      <UniqueIdentifier>{bd008385-5611-433d-ba3a-2b2dc4ff45de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\game\weapon">
+      <UniqueIdentifier>{c13d07ee-58bd-43dd-854a-a5e15467d411}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\game\weapon\core">
+      <UniqueIdentifier>{c1186eee-6c58-4222-ab7a-c91210085abe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\game\weapon\dvd_logo">
+      <UniqueIdentifier>{452db053-6ca9-4902-a9ba-85f939be8cc1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="sfml-wfc.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="player.cpp">
-      <Filter>Header Files\player</Filter>
     </ClCompile>
     <ClCompile Include="window.cpp">
       <Filter>Header Files\window</Filter>
     </ClCompile>
-    <ClCompile Include="text.cpp">
-      <Filter>Header Files\text</Filter>
-    </ClCompile>
     <ClCompile Include="enemy.cpp">
-      <Filter>Header Files\enemy</Filter>
+      <Filter>Header Files\game\enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="player.cpp">
+      <Filter>Header Files\game\player</Filter>
     </ClCompile>
     <ClCompile Include="game.cpp">
       <Filter>Header Files\game\core</Filter>
     </ClCompile>
+    <ClCompile Include="util.cpp">
+      <Filter>Header Files\game\util\core</Filter>
+    </ClCompile>
+    <ClCompile Include="health_bar.cpp">
+      <Filter>Header Files\game\util\health_bar</Filter>
+    </ClCompile>
+    <ClCompile Include="timer.cpp">
+      <Filter>Header Files\game\util\timer</Filter>
+    </ClCompile>
+    <ClCompile Include="text.cpp">
+      <Filter>Header Files\game\util\text</Filter>
+    </ClCompile>
+    <ClCompile Include="wepon.cpp">
+      <Filter>Header Files\game\weapon\core</Filter>
+    </ClCompile>
+    <ClCompile Include="dvd_logo.cpp">
+      <Filter>Header Files\game\weapon\dvd_logo</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="player.h">
-      <Filter>Header Files\player</Filter>
-    </ClInclude>
     <ClInclude Include="window.h">
       <Filter>Header Files\window</Filter>
     </ClInclude>
-    <ClInclude Include="text.h">
-      <Filter>Header Files\text</Filter>
-    </ClInclude>
     <ClInclude Include="enemy.h">
-      <Filter>Header Files\enemy</Filter>
+      <Filter>Header Files\game\enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="player.h">
+      <Filter>Header Files\game\player</Filter>
     </ClInclude>
     <ClInclude Include="game.h">
       <Filter>Header Files\game\core</Filter>
+    </ClInclude>
+    <ClInclude Include="util.h">
+      <Filter>Header Files\game\util\core</Filter>
+    </ClInclude>
+    <ClInclude Include="health_bar.h">
+      <Filter>Header Files\game\util\health_bar</Filter>
+    </ClInclude>
+    <ClInclude Include="timer.h">
+      <Filter>Header Files\game\util\timer</Filter>
+    </ClInclude>
+    <ClInclude Include="text.h">
+      <Filter>Header Files\game\util\text</Filter>
+    </ClInclude>
+    <ClInclude Include="weapon.h">
+      <Filter>Header Files\game\weapon\core</Filter>
+    </ClInclude>
+    <ClInclude Include="dvd_logo.h">
+      <Filter>Header Files\game\weapon\dvd_logo</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

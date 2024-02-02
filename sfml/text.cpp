@@ -1,7 +1,16 @@
 #include "text.h"
-
-text::text()
+#include "window.h"
+namespace util
 {
-	txt.setCharacterSize(30.0f);
-	txt.setPosition(sf::Vector2f{ 0.0f,0.0f });
+	Text::Text(std::string txt)
+	{
+		font.loadFromFile("fonts/arial.ttf");
+		text.setString(txt);
+		text.setPosition(sf::Vector2f(0.0f, 0.0f));
+	}
+	void Text::draw()
+	{
+		win.draw(text);
+	}
+
 }
